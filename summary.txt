@@ -1,0 +1,145 @@
+ Please choose from two of the exercises below and submit using GitHub.
+
+
+P1) Guessing Game
+Write a number guessing game. Keep asking the user to guess a number between 1 and 100 until they guess correctly. If the number the user guesses is too high, tell them so. Same with if the number is too low. Congratulate them when they’ve guessed the correct number and tell them how many guesses they used to get to the correct number.
+
+guessnum = rand(1..100)
+
+puts("Hi this is the Guess number game")
+puts("Please input your guess from 1 to 100")
+userguess = gets.to_i
+count = 1
+
+until guessnum == userguess do
+  if userguess <= 0 || userguess > 100
+      puts("Your input is invalid or out of the range, please try again")
+  else
+    if userguess < guessnum
+      puts("Your guess number #{userguess} is too low, please try again")
+    else
+      puts("Your guess number #{userguess} is too big, please try again")
+    end
+  end
+  count += 1
+  puts("Please input your guess from 1 to 100")
+  userguess = gets.to_i
+end
+
+puts("Congratulations! Your guess number #{userguess} is correct. Your number of attempts #{count}. Thank you")
+
+P2) Common Words
+Write a function that takes in two lists of words and returns a list of the words common to both original lists.
+For example, given ["hello", "adios", "goodbye", "hola", "au revoir", "bonjour"] and ["hello", "welcome","thanks", "goodbye", "please"], return ["hello", "goodbye"].
+
+def common_words(list1, list2)
+  commonres = []
+  count = 0
+  for i in 0...list1.length
+    for j in 0...list2.length
+      if list2[j] == list1[i]
+        commonres << list1[i]
+        count += 1
+      end
+    end
+  end
+  if count == 0
+    puts("No common words in the lists")
+  else
+    puts("List of the words common to both original lists #{commonres}")
+  end
+end
+#ls1 = []
+ls1 = ["hello", "adios", "goodbye", "hola", "au revoir", "bonjour"]
+ls2 = ["hello", "welcome","thanks", "goodbye", "please"]
+
+puts common_words(ls1, ls2)
+
+
+P3) Divisibility
+Write a function that takes in 3 integers as arguments and returns a list of numbers from 1 to 100 (inclusive), containing only integers that are evenly divisible by at least one of the integers.
+For example, given 50, 30, and 29, return [29, 30, 50, 58, 60, 87, 90, 100].
+
+def evenly_devis(int1, int2, int3)
+  result = []
+  counter = 1
+  if int1 < 1 || int2 < 1 || int3 < 1
+    puts("Wrong input")
+  else
+    while counter < 101 do
+      if (counter % int1) == 0 || (counter % int2) == 0 || (counter % int3) == 0
+        result << counter
+      end
+      counter += 1
+    end
+    puts("List of the integers that are evenly divisible by at least one of the integers #{result}")
+  end
+end
+
+puts evenly_devis(50,30,29)
+
+P4) Input Strings
+Take an input string parameter and determine if exactly 2 question marks exist between every pair of numbers that add up to 15. If so, return true, otherwise return false.
+For example, given “arrb6??9xxbl6??eee9” return true.
+
+#Solution No1
+def questionMarks(str)
+  result = []
+  str = str.gsub(/[a-zA-Z]/, '')
+  for i in 0..str.length-1
+    if str[i].to_i + str[i+1].to_i == 15
+      return false
+    elsif str[i].to_i + str[i+2].to_i == 15
+      return false
+    elsif str[i].to_i + str[i+3].to_i == 15
+      result << [str[i], str[i+3]]
+      if str[i+1] != '?' and str[i+2] != '?'
+        return false
+      end
+    end
+  end
+  if result == []
+    return false
+  else
+    return true
+  end
+end
+
+str = "arrb5??10xxbl6??eee9ff"
+puts questionMarks(str)
+
+
+#The exercise conditions "between every pair of numbers" doesn't correlate with the example,
+# given “arrb6??9xxbl6??eee9” return true, since we have a 3 pairs in example (6 - 9, 9 - 6 and 6 - 9 )
+# and the second pair is failed the condition "if exactly 2 question marks exist"
+#But in case if the example is correct I providing the second solution which is return True
+
+#Solution No2
+def questionMarks1(str)
+  result = []
+  str = str.gsub(/[a-zA-Z]/, '')
+  i = 0
+  while i < str.length do
+    if str[i].to_i + str[i+1].to_i == 15
+      return false
+    elsif str[i].to_i + str[i+2].to_i == 15
+      return false
+    elsif str[i].to_i + str[i+3].to_i == 15
+      result << [str[i], str[i+3]]
+      i+=4
+      if str[i+1] != '?' and str[i+2] != '?'
+        return false
+      end
+    end
+    i+=1
+  end
+  if result == []
+    return false
+  else
+    return true
+  end
+end
+
+str = "arrb6??9xxbl6??eee9ff"
+puts questionMarks1(str)
+
