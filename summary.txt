@@ -1,8 +1,9 @@
  Please choose from two of the exercises below and submit using GitHub.
 
+#The code implemented in Ruby.
 
 P1) Guessing Game
-Write a number guessing game. Keep asking the user to guess a number between 1 and 100 until they guess correctly. If the number the user guesses is too high, tell them so. Same with if the number is too low. Congratulate them when theyíve guessed the correct number and tell them how many guesses they used to get to the correct number.
+Write a number guessing game. Keep asking the user to guess a number between 1 and 100 until they guess correctly. If the number the user guesses is too high, tell them so. Same with if the number is too low. Congratulate them when they‚Äôve guessed the correct number and tell them how many guesses they used to get to the correct number.
 
 guessnum = rand(1..100)
 
@@ -80,7 +81,7 @@ puts evenly_devis(50,30,29)
 
 P4) Input Strings
 Take an input string parameter and determine if exactly 2 question marks exist between every pair of numbers that add up to 15. If so, return true, otherwise return false.
-For example, given ìarrb6??9xxbl6??eee9î return true.
+For example, given ‚Äúarrb6??9xxbl6??eee9‚Äù return true.
 
 #Solution No1
 def questionMarks(str)
@@ -110,7 +111,7 @@ puts questionMarks(str)
 
 
 #The exercise conditions "between every pair of numbers" doesn't correlate with the example,
-# given ìarrb6??9xxbl6??eee9î return true, since we have a 3 pairs in example (6 - 9, 9 - 6 and 6 - 9 )
+# given ‚Äúarrb6??9xxbl6??eee9‚Äù return true, since we have a 3 pairs in example (6 - 9, 9 - 6 and 6 - 9 )
 # and the second pair is failed the condition "if exactly 2 question marks exist"
 #But in case if the example is correct I providing the second solution which is return True
 
